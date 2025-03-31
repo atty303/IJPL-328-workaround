@@ -1,6 +1,6 @@
 # Workaround for IntelliJ IDEA Issue IJPL-328
 
-This is a workaround for the IntelliJ IDEA issue IJPL-328, which causes the IDE can't handle 1Password's SSH Agent.
+This is a workaround for the IntelliJ IDEA issue [Gateway's SSH Agent forwarding does not work with 1password's SSH Agent : IJPL-328](https://youtrack.jetbrains.com/issue/IJPL-328/Gateways-SSH-Agent-forwarding-does-not-work-with-1passwords-SSH-Agent).
 
 ## Build
 
