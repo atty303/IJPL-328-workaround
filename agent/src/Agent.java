@@ -14,17 +14,11 @@ public class Agent {
                         cp.insertClassPath(new LoaderClassPath(loader));
 
                         CtClass ctClass = cp.get("com.intellij.ssh.NamedPipeAgentConnector");
-                        CtMethod method = ctClass.getDeclaredMethod("query");
-method.insertBefore(
-  "com.intellij.openapi.diagnostic.Logger.getInstance(" +
-  "com.intellij.ssh.NamedPipeAgentConnector.class" +
-  ").warn(\"query(Buffer): calling dispose$lambda$4\");" +
 
-  "com.intellij.ssh.NamedPipeAgentConnector.dispose$lambda$4(this);" +
-  "com.intellij.openapi.diagnostic.Logger.getInstance(" +
-  "com.intellij.ssh.NamedPipeAgentConnector.class" +
-  ").warn(\"query(Buffer): called dispose$lambda$4\");"
-);
+                        CtMethod query = ctClass.getDeclaredMethod("query");
+                        query.insertBefore(
+                            "com.intellij.openapi.diagnostic.Logger.getInstance(com.intellij.ssh.NamedPipeAgentConnector.class).info(\"query: calling dispose\");" +
+                            "com.intellij.ssh.NamedPipeAgentConnector.dispose$lambda$4(this);");
 
                         return ctClass.toBytecode();
                     } catch (Exception e) {

@@ -1,3 +1,6 @@
 .gradle
+.metals
+.vscode
 build
+out
 work

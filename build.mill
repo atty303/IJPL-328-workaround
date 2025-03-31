@@ -1,0 +1,11 @@
+package build
+import mill._, javalib._
+
+object agent extends JavaModule {
+  def ivyDeps = Agg(
+    ivy"org.javassist:javassist:3.30.2-GA",
+  )
+  def manifest = Task {
+    mill.api.JarManifest.MillDefault.add("Premain-Class" -> "Agent")
+  }
+}
