@@ -3,4 +3,4 @@ java = "21"
 
 [tasks.build]
 run = "./mill agent.assembly"
-run_windows = "./mill.bat agent.assembly"
+run_windows = "mill.bat agent.assembly"

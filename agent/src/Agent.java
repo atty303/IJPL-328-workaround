@@ -15,9 +15,19 @@ public class Agent {
 
                         CtClass ctClass = cp.get("com.intellij.ssh.NamedPipeAgentConnector");
 
+                        CtMethod isAvailable = ctClass.getDeclaredMethod("isAvailable");
+                        isAvailable.insertBefore(
+                            "com.intellij.openapi.diagnostic.Logger.getInstance(com.intellij.ssh.NamedPipeAgentConnector.class).info(\"isAvailable: calling dispose\");" +
+                            "com.intellij.ssh.NamedPipeAgentConnector.dispose$lambda$4(this);");
+
                         CtMethod query = ctClass.getDeclaredMethod("query");
                         query.insertBefore(
                             "com.intellij.openapi.diagnostic.Logger.getInstance(com.intellij.ssh.NamedPipeAgentConnector.class).info(\"query: calling dispose\");" +
+                            "com.intellij.ssh.NamedPipeAgentConnector.dispose$lambda$4(this);");
+
+                        CtMethod withPipe = ctClass.getDeclaredMethod("withPipe");
+                        withPipe.insertBefore(
+                            "com.intellij.openapi.diagnostic.Logger.getInstance(com.intellij.ssh.NamedPipeAgentConnector.class).info(\"withPipe: calling dispose\");" +
                             "com.intellij.ssh.NamedPipeAgentConnector.dispose$lambda$4(this);");
 
                         return ctClass.toBytecode();
